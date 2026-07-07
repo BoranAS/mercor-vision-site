@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demander un dataset — Mercor Vision</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html">MERCOR <span>VISION</span></a>
+  <nav>
+    <a href="demande.html">Demander un dataset</a>
+    <a href="vendre.html">Vendre ses données</a>
+    <a href="contribuer.html">Contribuer</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+<div class="hero" style="padding-bottom:10px">
+  <h1 style="font-size:34px">Demander un dataset</h1>
+  <p class="lead">Décrivez votre besoin — nous revenons sous 48 h avec une proposition
+  (faisabilité, échantillon, prix). Le bouton en bas ouvre votre email pré-rempli :
+  rien n'est envoyé sans vous.</p>
+</div>
+
+<form class="form-card" id="f" onsubmit="return send(event)">
+  <label class="f">Nom</label>
+  <input type="text" id="nom" placeholder="Jane Smith">
+  <label class="f">Email professionnel</label>
+  <input type="email" id="email" placeholder="jane@labo.fr">
+  <label class="f">Organisation <small>labo, startup, studio…</small></label>
+  <input type="text" id="org">
+
+  <label class="f">Type de contenu recherché *</label>
+  <div class="checks" id="contenus">
+    <label class="chk"><input type="checkbox" value="Sport / action / mouvement"><span><b>🥊 Sport / action / mouvement</b><small>combat, fitness, gestes techniques — notre spécialité</small></span></label>
+    <label class="chk"><input type="checkbox" value="Pose / mouvement humain (multi-capteurs)"><span><b>🕺 Pose &amp; mouvement humain</b><small>multi-cam, pose 3D, profondeur</small></span></label>
+    <label class="chk"><input type="checkbox" value="Égocentrique / robotique"><span><b>🤖 Égocentrique / robotique</b><small>caméra portée, manipulation</small></span></label>
+    <label class="chk"><input type="checkbox" value="Industriel / défauts"><span><b>🏭 Industriel / défauts</b><small>inspection, contrôle qualité</small></span></label>
+    <label class="chk"><input type="checkbox" value="Animation / dessins"><span><b>🎨 Animation / dessins</b><small>croquis, intervalles, layers</small></span></label>
+    <label class="chk"><input type="checkbox" value="Documents / OCR"><span><b>📄 Documents / OCR</b><small>manuscrits, formulaires</small></span></label>
+    <label class="chk"><input type="checkbox" value="Conduite / véhicules"><span><b>🚗 Conduite / véhicules</b><small>route, trafic, dashcam</small></span></label>
+    <label class="chk"><input type="checkbox" value="Drone / aérien"><span><b>🛸 Drone / aérien</b><small>inspection, agriculture</small></span></label>
+    <label class="chk"><input type="checkbox" value="Retail"><span><b>🛒 Retail</b><small>rayons, produits</small></span></label>
+    <label class="chk"><input type="checkbox" value="Autre"><span><b>➕ Autre</b><small>précisez dans la description</small></span></label>
+  </div>
+
+  <label class="f">Description du besoin *
+    <small>Sujets, scènes, angles, conditions… tout ce qui précise la spec.</small></label>
+  <textarea id="desc" placeholder="Ex. : 5 000 clips de 3-5 s de frappes en sparring, 2 angles, salle éclairée, annotés type de coup + timestamps."></textarea>
+
+  <label class="f">Volume &amp; format</label>
+  <input type="text" id="volume" placeholder="Ex. : 20 000 images / 40 h vidéo — format COCO">
+
+  <label class="f">Annotations attendues</label>
+  <div class="checks">
+    <label class="chk"><input type="checkbox" name="annot" value="Classification"><span><b>Classification</b></span></label>
+    <label class="chk"><input type="checkbox" name="annot" value="Boîtes englobantes"><span><b>Boîtes englobantes</b></span></label>
+    <label class="chk"><input type="checkbox" name="annot" value="Segmentation"><span><b>Segmentation</b></span></label>
+    <label class="chk"><input type="checkbox" name="annot" value="Keypoints / pose"><span><b>Keypoints / pose</b></span></label>
+    <label class="chk"><input type="checkbox" name="annot" value="Timestamps / événements"><span><b>Timestamps / événements</b></span></label>
+    <label class="chk"><input type="checkbox" name="annot" value="Aucune (brut)"><span><b>Aucune (brut)</b></span></label>
+  </div>
+
+  <label class="f">Usage principal</label>
+  <div class="radios">
+    <label class="chk"><input type="radio" name="usage" value="Entraînement" checked><span><b>Entraînement / fine-tuning</b></span></label>
+    <label class="chk"><input type="radio" name="usage" value="Évaluation (fraîcheur certifiée requise)"><span><b>Évaluation</b><small>nous certifions que les données n'ont jamais été publiées (anti-contamination)</small></span></label>
+  </div>
+
+  <label class="f">Provenance acceptée</label>
+  <div class="radios">
+    <label class="chk"><input type="radio" name="prov" value="Capture originale uniquement" checked><span><b>Capture originale uniquement</b><small>produit pour vous ou par nos contributeurs</small></span></label>
+    <label class="chk"><input type="radio" name="prov" value="Contenus web acceptés (curation d'URLs sous TDM)"><span><b>Contenus web acceptés</b><small>livrés en table d'URLs qualifiées + annotations (conforme TDM)</small></span></label>
+  </div>
+
+  <label class="f">Rapprochement des doublons — à quel point deux images sont « pareilles » pour vous ?
+    <small>C'est VOUS qui fixez la règle de comptage : elle détermine ce qui est livré et facturé.</small></label>
+  <select id="dedup">
+    <option>Strict — seules les copies identiques comptent comme doublons</option>
+    <option selected>Standard — les variantes évidentes (recompression, resize, frames adjacentes) sont fusionnées</option>
+    <option>Large — les scènes quasi identiques sont fusionnées (max de diversité par image payée)</option>
+    <option>Séquences vidéo — 1 image représentative par plan/action (échantillonnage temporel)</option>
+  </select>
+
+  <label class="f">Exclusivité</label>
+  <div class="radios">
+    <label class="chk"><input type="radio" name="excl" value="Exclusif"><span><b>Exclusif</b><small>vous seul y aurez accès (prix plein)</small></span></label>
+    <label class="chk"><input type="radio" name="excl" value="Standard (non-exclusif)" checked><span><b>Standard</b><small>licence non-exclusive</small></span></label>
+    <label class="chk"><input type="radio" name="excl" value="Mutualisé (group buy)"><span><b>Mutualisé</b><small>le coût est partagé entre plusieurs équipes — vous n'êtes débité que si le groupe se forme</small></span></label>
+  </div>
+
+  <label class="f">Budget indicatif &amp; échéance</label>
+  <input type="text" id="budget" placeholder="Ex. : 3 000 € — livraison souhaitée fin août">
+
+  <button class="btn primary send" type="submit">Envoyer la demande</button>
+  <p class="note">Le bouton ouvre votre logiciel d'email avec la demande pré-remplie — vérifiez et envoyez.</p>
+</form>
+</div>
+
+<footer><div class="wrap">Mercor Vision · <a href="mailto:boran.cinema@gmail.com">boran.cinema@gmail.com</a></div></footer>
+
+<script>
+function val(id) { return document.getElementById(id).value || "-"; }
+function checked(sel) {
+  return Array.from(document.querySelectorAll(sel + " input:checked")).map(i => i.value).join(", ") || "-";
+}
+function radio(name) {
+  const r = document.querySelector("input[name=" + name + "]:checked");
+  return r ? r.value : "-";
+}
+function send(e) {
+  e.preventDefault();
+  const annots = Array.from(document.querySelectorAll("input[name=annot]:checked"))
+    .map(i => i.value).join(", ") || "-";
+  const body =
+    "Nom : " + val("nom") + "\n" +
+    "Email : " + val("email") + "\n" +
+    "Organisation : " + val("org") + "\n\n" +
+    "Contenu recherché : " + checked("#contenus") + "\n" +
+    "Description : " + val("desc") + "\n" +
+    "Volume & format : " + val("volume") + "\n" +
+    "Annotations : " + annots + "\n" +
+    "Usage : " + radio("usage") + "\n" +
+    "Provenance acceptée : " + radio("prov") + "\n" +
+    "Rapprochement doublons : " + document.getElementById("dedup").value + "\n" +
+    "Exclusivité : " + radio("excl") + "\n" +
+    "Budget & échéance : " + val("budget") + "\n";
+  location.href = "mailto:boran.cinema@gmail.com?subject=" +
+    encodeURIComponent("Demande de dataset — " + (val("org") !== "-" ? val("org") : val("nom"))) +
+    "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+</body>
+</html>
