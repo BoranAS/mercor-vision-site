@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contribuer &amp; gagner — Mercor Vision</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html">MERCOR <span>VISION</span></a>
+  <nav>
+    <a href="demande.html">Demander un dataset</a>
+    <a href="vendre.html">Vendre ses données</a>
+    <a href="contribuer.html">Contribuer</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+<div class="hero" style="padding-bottom:10px">
+  <h1 style="font-size:34px">Choisissez une mission &amp; gagnez</h1>
+  <p class="lead">Missions rémunérées de collecte, d'annotation et de contrôle qualité.
+  Cadre clair : protocole fourni, consentement et droit à l'image gérés, paiement à la
+  mission validée. <span class="rate">Collecte sport 20–40 €/h</span>
+  <span class="rate">Annotation 12–25 €/h</span> <span class="rate">QA 15–30 €/h</span></p>
+</div>
+
+<form class="form-card" onsubmit="return send(event)">
+  <label class="f">Nom</label>
+  <input type="text" id="nom" placeholder="Prénom Nom">
+  <label class="f">Email</label>
+  <input type="email" id="email" placeholder="vous@mail.com">
+  <label class="f">Ville / région <small>utile pour les missions de collecte sur place</small></label>
+  <input type="text" id="ville">
+
+  <label class="f">Types de contributions * <small>cochez tout ce que vous pouvez faire — nous vous proposerons des missions correspondant à votre profil.</small></label>
+  <div class="checks">
+    <label class="chk"><input type="checkbox" value="Vidéo — action/mouvement (sport, combat, fitness)"><span><b>🥊 Vidéo — action &amp; mouvement</b><small>activités physiques, sports, séquences de mouvements</small></span></label>
+    <label class="chk"><input type="checkbox" value="Vidéo — corps entier / gestes"><span><b>🕺 Vidéo — corps entier</b><small>gestes, déplacements, démonstrations</small></span></label>
+    <label class="chk"><input type="checkbox" value="Vidéo — égocentrique (caméra portée)"><span><b>🎥 Vidéo — égocentrique</b><small>caméra tête/poitrine pendant des tâches</small></span></label>
+    <label class="chk"><input type="checkbox" value="Photos — monde réel"><span><b>📷 Photos — monde réel</b><small>objets, scènes, lieux (avec autorisations)</small></span></label>
+    <label class="chk"><input type="checkbox" value="Photos — documents / manuscrits"><span><b>📄 Photos — documents</b><small>textes manuscrits, formulaires</small></span></label>
+    <label class="chk"><input type="checkbox" value="Annotation images/vidéo"><span><b>🏷️ Annotation</b><small>boîtes, segmentation, keypoints, timestamps — process guidés</small></span></label>
+    <label class="chk"><input type="checkbox" value="Contrôle qualité (QA)"><span><b>✅ Contrôle qualité</b><small>vérifier des lots : protocole, netteté, droits</small></span></label>
+  </div>
+
+  <label class="f">Matériel disponible</label>
+  <div class="checks">
+    <label class="chk"><input type="checkbox" name="mat" value="Smartphone récent"><span><b>📱 Smartphone récent</b></span></label>
+    <label class="chk"><input type="checkbox" name="mat" value="Reflex / hybride"><span><b>📸 Reflex / hybride</b></span></label>
+    <label class="chk"><input type="checkbox" name="mat" value="Action cam (GoPro…)"><span><b>🎬 Action cam</b></span></label>
+    <label class="chk"><input type="checkbox" name="mat" value="Drone"><span><b>🛸 Drone</b></span></label>
+    <label class="chk"><input type="checkbox" name="mat" value="PC (annotation/QA)"><span><b>💻 PC pour annotation/QA</b></span></label>
+  </div>
+
+  <label class="f">Expérience <small>facultatif : sport pratiqué, annotation déjà faite, salle/club où vous pouvez filmer…</small></label>
+  <textarea id="exp" placeholder="Ex. : coach MMA, accès à une salle 3 soirs/semaine ; 6 mois d'annotation COCO."></textarea>
+
+  <label class="f">Disponibilité</label>
+  <input type="text" id="dispo" placeholder="Ex. : 10 h/semaine, soirs et week-ends">
+
+  <button class="btn primary send" type="submit">Rejoindre le vivier</button>
+  <p class="note">Le bouton ouvre votre email pré-rempli. Toute personne filmée dans vos missions
+  signe une autorisation (modèle fourni) — c'est la condition de la rémunération.</p>
+</form>
+</div>
+
+<footer><div class="wrap">Mercor Vision · <a href="mailto:boran.cinema@gmail.com">boran.cinema@gmail.com</a></div></footer>
+
+<script>
+function val(id) { return document.getElementById(id).value || "-"; }
+function send(e) {
+  e.preventDefault();
+  const types = Array.from(document.querySelectorAll(".checks input:not([name]):checked"))
+    .map(i => i.value).join(", ") || "-";
+  const mat = Array.from(document.querySelectorAll("input[name=mat]:checked"))
+    .map(i => i.value).join(", ") || "-";
+  const body =
+    "Nom : " + val("nom") + "\nEmail : " + val("email") + "\nVille : " + val("ville") + "\n\n" +
+    "Types de contributions : " + types + "\n" +
+    "Matériel : " + mat + "\n" +
+    "Expérience : " + val("exp") + "\n" +
+    "Disponibilité : " + val("dispo") + "\n";
+  location.href = "mailto:boran.cinema@gmail.com?subject=" +
+    encodeURIComponent("Candidature contributeur — " + val("nom")) +
+    "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+</body>
+</html>
