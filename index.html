@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercor Vision — Données visuelles vérifiées pour l'IA</title>
+<meta name="description" content="Datasets visuels uniques, rights-cleared, jamais vus par les modèles. Audit gratuit de votre dataset : doublons, fuites train/val, contamination. Conforme AI Act.">
+<style>
+  :root { --bg:#0d1117; --panel:#161b22; --text:#e6edf3; --muted:#8b949e; --accent:#7fd1a8; --accent2:#5aa8e0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 18px 0; border-bottom: 1px solid #21262d; }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 800; letter-spacing: .5px; }
+  .logo span { color: var(--accent); }
+  .hero { padding: 72px 0 56px; text-align: center; }
+  h1 { font-size: 38px; line-height: 1.2; margin-bottom: 16px; }
+  h1 em { color: var(--accent); font-style: normal; }
+  .sub { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto 32px; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #0d1117; }
+  .btn.secondary { background: transparent; color: var(--text); border: 1px solid #39424d; }
+  .badge-reg { display: inline-block; background: #1f2a37; color: var(--accent2); border: 1px solid #2c3a4d;
+    padding: 5px 14px; border-radius: 16px; font-size: 13px; margin-bottom: 24px; }
+  section { padding: 48px 0; border-top: 1px solid #21262d; }
+  h2 { font-size: 24px; margin-bottom: 20px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid #21262d; border-radius: 12px; padding: 22px; }
+  .card h3 { font-size: 17px; margin-bottom: 10px; color: var(--accent); }
+  .card p, .card li { color: var(--muted); font-size: 14px; }
+  .card ul { padding-left: 18px; margin-top: 8px; }
+  .steps { counter-reset: step; }
+  .step { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+  .step::before { counter-increment: step; content: counter(step); flex: 0 0 34px; height: 34px;
+    background: var(--accent); color: #0d1117; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 800; }
+  .step p { color: var(--muted); font-size: 15px; }
+  .step b { color: var(--text); }
+  .audit { background: linear-gradient(135deg, #14261e, #16202b); border: 1px solid #2c3a4d; border-radius: 14px;
+    padding: 30px; text-align: center; }
+  .audit h2 { margin-bottom: 10px; }
+  .audit p { color: var(--muted); max-width: 560px; margin: 0 auto 20px; }
+  footer { padding: 32px 0 48px; color: #556; font-size: 13px; text-align: center; border-top: 1px solid #21262d; }
+  a.mail { color: var(--accent2); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="logo">MERCOR <span>VISION</span></div>
+  <a class="mail" href="mailto:boran.cinema@gmail.com">contact</a>
+</div></header>
+
+<div class="hero wrap">
+  <div class="badge-reg">AI Act — obligation de provenance des données dès août 2026 : nous documentons tout.</div>
+  <h1>Des données visuelles <em>vérifiées</em> pour entraîner et évaluer vos modèles</h1>
+  <p class="sub">Datasets uniques, droits vérifiés, provenance documentée — et prouvés <b>jamais vus par les modèles</b> pour vos évaluations. Sourcing sur mesure, mutualisation possible entre équipes pour diviser les coûts.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="mailto:boran.cinema@gmail.com?subject=Recherche%20de%20dataset&body=Contenu%20recherch%C3%A9%20(sujets%2C%20sc%C3%A8nes%2C%20actions)%20%3A%0D%0AVolume%20(images%20%2F%20heures%20vid%C3%A9o)%20%3A%0D%0AAnnotations%20attendues%20%3A%0D%0ACapteurs%20%2F%20m%C3%A9tadonn%C3%A9es%20(pose%2C%20depth%2C%20multi-cam%E2%80%A6)%20%3A%0D%0AUsage%20(entra%C3%AEnement%20%2F%20%C3%A9valuation)%20%3A%0D%0AContraintes%20de%20droits%20%2F%20conformit%C3%A9%20%3A%0D%0ABudget%20indicatif%20%3A%0D%0A%C3%89ch%C3%A9ance%20%3A%0D%0APartage%20du%20co%C3%BBt%20avec%20d%27autres%20%C3%A9quipes%20envisageable%20(oui%2Fnon)%20%3A">Je cherche un dataset</a>
+    <a class="btn secondary" href="mailto:boran.cinema@gmail.com?subject=Je%20d%C3%A9tiens%20des%20donn%C3%A9es%20visuelles&body=Type%20de%20contenus%20(vid%C3%A9os%2C%20photos%2C%20dessins%E2%80%A6)%20%3A%0D%0AVolume%20approximatif%20%3A%0D%0AQui%20a%20film%C3%A9%2Fcr%C3%A9%C3%A9%20ces%20contenus%20%3F%20%3A%0D%0APersonnes%20visibles%20et%20consentements%20%3A%0D%0ACe%20que%20je%20veux%20en%20faire%20%3A">Je détiens des données à monétiser</a>
+  </div>
+</div>
+
+<section><div class="wrap audit">
+  <h2>🔎 Audit gratuit de votre dataset</h2>
+  <p>Envoyez-nous n'importe quel dataset (ou un échantillon) : vous recevez sous 48 h un <b>certificat d'analyse</b> — doublons exacts et quasi-doublons vérifiés, fuites train/val, présence dans les corpus publics (LAION, Roboflow…), provenance EXIF/C2PA, détection de contenus IA. Gratuit, sans engagement. C'est notre façon de nous présenter.</p>
+  <a class="btn primary" href="mailto:boran.cinema@gmail.com?subject=Audit%20gratuit%20de%20dataset&body=Taille%20du%20dataset%20%3A%0D%0AFormat%20%3A%0D%0ACe%20que%20je%20veux%20v%C3%A9rifier%20%3A">Demander l'audit gratuit</a>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Pourquoi c'est différent</h2>
+  <div class="cols">
+    <div class="card"><h3>Unicité prouvée</h3>
+      <p>Chaque image est vérifiée contre notre registre d'empreintes et les corpus publics :</p>
+      <ul><li>pas de doublons internes cachés</li><li>pas d'images déjà vendues ailleurs</li><li>pas de données déjà « vues » par les modèles — crucial pour vos <b>jeux d'évaluation</b></li></ul></div>
+    <div class="card"><h3>Droits en règle</h3>
+      <p>Chaque dataset est livré avec :</p>
+      <ul><li>attestation de provenance du producteur</li><li>consentements des personnes filmées</li><li>garanties contractuelles et indemnisation</li><li>documentation conforme AI Act (provenance, collecte, annotation)</li></ul></div>
+    <div class="card"><h3>Accessible</h3>
+      <p>Trois modes d'acquisition :</p>
+      <ul><li><b>Exclusif</b> — vous seul y avez accès</li><li><b>Standard</b> — licence non-exclusive</li><li><b>Mutualisé</b> — plusieurs équipes partagent le coût d'une même licence (dès quelques centaines d'euros par équipe)</li></ul></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Missions &amp; talents</h2>
+  <div class="cols">
+    <div class="card"><h3>Vous voulez travailler avec nous ?</h3>
+      <p>Nous constituons un vivier pour des missions rémunérées :</p>
+      <ul><li><b>Collecte</b> — filmer/photographier selon un protocole (sport, industrie…)</li>
+      <li><b>Annotation</b> — labelliser images et vidéos avec nos process guidés</li>
+      <li><b>QA</b> — contrôler la qualité des lots livrés</li></ul>
+      <p style="margin-top:12px"><a class="btn secondary" href="mailto:boran.cinema@gmail.com?subject=Rejoindre%20le%20vivier%20(missions)&body=Profil%20(collecte%20%2F%20annotation%20%2F%20QA)%20%3A%0D%0AExp%C3%A9rience%20%3A%0D%0AMat%C3%A9riel%20(cam%C3%A9ra%2C%20PC)%20%3A%0D%0ADisponibilit%C3%A9%20%3A">Rejoindre le vivier</a></p></div>
+    <div class="card"><h3>Vous recrutez pour vos données ?</h3>
+      <p>Nous montons des équipes dédiées avec des process d'annotation standardisés (templates, gold sets, double-contrôle) — annotateurs, QA leads, taxonomistes, data ops.</p>
+      <p style="margin-top:12px"><a class="btn secondary" href="mailto:boran.cinema@gmail.com?subject=Besoin%20d%27une%20%C3%A9quipe%20data&body=Mission%20%3A%0D%0AVolume%20et%20d%C3%A9lai%20%3A%0D%0ABudget%20indicatif%20%3A">Décrire votre mission</a></p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Comment ça marche (service sur mesure)</h2>
+  <div class="steps">
+    <div class="step"><p><b>Décrivez votre besoin</b> — contenu, volume, annotations, contraintes. 10 minutes, par email.</p></div>
+    <div class="step"><p><b>On source et on vérifie</b> — production dédiée ou détenteurs de données existants ; chaque livrable passe la batterie complète et reçoit son certificat.</p></div>
+    <div class="step"><p><b>Contrat et livraison</b> — licence claire (l'empreinte du certificat identifie exactement ce qui est livré), paiement séquestré, livraison vérifiée.</p></div>
+  </div>
+  <p style="color:var(--muted);font-size:14px">Spécialités actuelles : <b>mouvement humain et sports de combat</b> (vidéo multi-angles, pose 3D, profondeur), extension en cours vers l'animation et l'imagerie industrielle.</p>
+</div></section>
+
+<footer><div class="wrap">
+  Mercor Vision — données visuelles vérifiées · <a class="mail" href="mailto:boran.cinema@gmail.com">boran.cinema@gmail.com</a><br>
+  Certificats générés par notre moteur d'analyse propriétaire (hash cryptographique + perceptuel + vérification structurelle + embeddings).
+</div></footer>
+
+</body>
+</html>
