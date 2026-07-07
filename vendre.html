@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendre ses données — Mercor Vision</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html">MERCOR <span>VISION</span></a>
+  <nav>
+    <a href="demande.html">Demander un dataset</a>
+    <a href="vendre.html">Vendre ses données</a>
+    <a href="contribuer.html">Contribuer</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+<div class="hero" style="padding-bottom:10px">
+  <h1 style="font-size:34px">Proposer vos données</h1>
+  <p class="lead">Vos contenus sont vérifiés (unicité, provenance), documentés, puis licenciés
+  selon le mode que VOUS choisissez. Vous gardez le contrôle : sélection des images, prix
+  plancher, retrait à tout moment — et des revenus à chaque vente, calculés image par image.</p>
+</div>
+
+<form class="form-card" onsubmit="return send(event)">
+  <label class="f">Nom</label>
+  <input type="text" id="nom" placeholder="Prénom Nom">
+  <label class="f">Email professionnel</label>
+  <input type="email" id="email" placeholder="vous@structure.fr">
+  <label class="f">Structure <small>salle, studio, club, indépendant…</small></label>
+  <input type="text" id="org">
+
+  <label class="f">Aperçu du jeu de données *
+    <small>Décrivez les modalités (photo/vidéo/capteurs), l'échelle (volume, durée),
+    la SITUATION DES DROITS (qui a filmé ? les personnes visibles ont-elles signé ?)
+    et ce qui rend ces données rares.</small></label>
+  <textarea id="desc" placeholder="Ex. : 120 h de sparring multi-angles filmées par nous dans notre salle depuis 2024 ; 15 athlètes, tous d'accord pour signer ; 2 caméras fixes 4K."></textarea>
+
+  <label class="f">Type de contenu</label>
+  <div class="checks" id="contenus">
+    <label class="chk"><input type="checkbox" value="Vidéo sport / mouvement"><span><b>🥊 Vidéo sport / mouvement</b></span></label>
+    <label class="chk"><input type="checkbox" value="Photos"><span><b>📷 Photos</b></span></label>
+    <label class="chk"><input type="checkbox" value="Dessins / animation"><span><b>🎨 Dessins / animation</b></span></label>
+    <label class="chk"><input type="checkbox" value="Industriel"><span><b>🏭 Industriel</b></span></label>
+    <label class="chk"><input type="checkbox" value="Documents"><span><b>📄 Documents</b></span></label>
+    <label class="chk"><input type="checkbox" value="Autre"><span><b>➕ Autre</b></span></label>
+  </div>
+
+  <label class="f">Personnes identifiables dans les contenus ?</label>
+  <div class="radios">
+    <label class="chk"><input type="radio" name="pers" value="Oui, autorisations déjà signées"><span><b>Oui — autorisations déjà signées</b></span></label>
+    <label class="chk"><input type="radio" name="pers" value="Oui, autorisations à faire signer (modèle fourni)" checked><span><b>Oui — à faire signer</b><small>nous fournissons le modèle d'autorisation</small></span></label>
+    <label class="chk"><input type="radio" name="pers" value="Non, aucune personne identifiable"><span><b>Non</b></span></label>
+  </div>
+
+  <label class="f">Mode de commercialisation souhaité</label>
+  <div class="radios">
+    <label class="chk"><input type="radio" name="mode" value="Vente exclusive"><span><b>Vente exclusive</b><small>un seul acheteur, prix fort</small></span></label>
+    <label class="chk"><input type="radio" name="mode" value="Licences non-exclusives" checked><span><b>Licences non-exclusives</b><small>plusieurs acheteurs possibles</small></span></label>
+    <label class="chk"><input type="radio" name="mode" value="Mandat de gestion (vous vendez pour moi)"><span><b>Mandat de gestion</b><small>vous signez une fois, nous licencions dans vos limites (prix plancher), reversements automatiques à chaque vente</small></span></label>
+  </div>
+
+  <label class="f">Attentes de prix <small>facultatif — nous vous donnerons une fourchette marché de toute façon</small></label>
+  <input type="text" id="prix" placeholder="Ex. : à partir de 2 €/min de vidéo">
+
+  <button class="btn primary send" type="submit">Proposer mes données</button>
+  <p class="note">Étape suivante : un échange de 20 min + un audit gratuit de vos données
+  (unicité, provenance) pour établir leur valeur.</p>
+</form>
+</div>
+
+<footer><div class="wrap">Mercor Vision · <a href="mailto:boran.cinema@gmail.com">boran.cinema@gmail.com</a></div></footer>
+
+<script>
+function val(id) { return document.getElementById(id).value || "-"; }
+function radio(name) {
+  const r = document.querySelector("input[name=" + name + "]:checked");
+  return r ? r.value : "-";
+}
+function send(e) {
+  e.preventDefault();
+  const types = Array.from(document.querySelectorAll("#contenus input:checked"))
+    .map(i => i.value).join(", ") || "-";
+  const body =
+    "Nom : " + val("nom") + "\nEmail : " + val("email") + "\nStructure : " + val("org") + "\n\n" +
+    "Aperçu du dataset : " + val("desc") + "\n" +
+    "Type de contenu : " + types + "\n" +
+    "Personnes identifiables : " + radio("pers") + "\n" +
+    "Mode souhaité : " + radio("mode") + "\n" +
+    "Attentes de prix : " + val("prix") + "\n";
+  location.href = "mailto:boran.cinema@gmail.com?subject=" +
+    encodeURIComponent("Proposition de données — " + (val("org") !== "-" ? val("org") : val("nom"))) +
+    "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+</body>
+</html>
